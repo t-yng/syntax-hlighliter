@@ -1,0 +1,47 @@
+{
+  "name": "syntax-highlighter",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "This is an extension for chat_work to highlight source code",
+  "background":{
+    "scripts": [
+			// "js/jquery-2.2.1.min.js",
+			// "js/background.js"
+		]
+  },
+    "content_scripts": [
+    {
+      "matches": [
+        "https://kcw.kddi.ne.jp/*",
+				"https://www.chatwork.com/*"
+      ],
+      "css": [
+        "style/github.min.css"
+      ],
+      "js": [
+        "js/jquery-2.2.1.min.js",
+        "js/highlight.min.js",
+        "js/content-script.js"
+      ]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "https://kcw.kddi.ne.jp/*",
+		"https://www.chatwork.com/*"
+  ],
+  "page_action": {
+    "default_icon": {
+      // "16": "images/icon16.png",
+      // "48": "images/icon48.png",
+      // "128": "images/icon128.png"
+    },
+    "default_title": "syntax-highlighter"
+  },
+  "icons":{
+    // "16": "images/icon16.png",
+    // "48": "images/icon48.png",
+    // "128": "images/icon128.png"
+  }
+
+}
