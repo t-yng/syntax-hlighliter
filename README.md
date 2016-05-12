@@ -32,7 +32,7 @@ you can use markdown notation.
 <!--      return process(block, true, 0x0F) +-->
 <!--             ` class="${cls}"`;-->
 <!--  } catch (e) {-->
-    /* handle exception */
+    <!--/* handle exception */-->
 <!--  }-->
 <!--  for (var i = 0 / 2; i < classes.length; i++) {-->
 <!--    if (checkCondition(classes[i]) === undefined)-->
