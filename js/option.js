@@ -8,9 +8,6 @@ $(function(){
   $('#cancell_btn').click(() => {close()})
 })
 
-$(function(){
-})
-
 function init(){
   const css = localStorage.getItem('syntax_css')? localStorage.getItem('syntax_css') : 'style/default.min.css'
   $(`#syntax_css > option[value='${css}']`).prop("selected", true)
