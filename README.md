@@ -25,7 +25,7 @@ export  $initHighlight;
 ```
 ````
 
-```
+```javascript
 function $initHighlight(block, cls) {
   try {
     if (cls.search(/\bno\-highlight\b/) != -1)

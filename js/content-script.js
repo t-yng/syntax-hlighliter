@@ -5,12 +5,20 @@
 	// highlight.jsを読み込む
 	hljs.initHighlightingOnLoad();
 	
+	$(function(){
+		// メッセージ入力を監視
+		$('#_chatText').change(function(){
+			const text = $(this).val()
+			if(text.match(/```/)){
+				const code = convert(text)
+				$(this).val(code)
+			}
+		})
+	})
+	
 	function changeMessageAreas() {
 		$("div.chatTimeLineMessage").each(function() {
 			let messageAreaNode = $(this).find("div.chatTimeLineMessageArea")
-
-			const code = convert(messageAreaNode)
-			messageAreaNode.find("pre").html(code)
 
 			messageAreaNode.find("pre").find("code").each(function(i, block){
 				hljs.highlightBlock(block)
@@ -19,11 +27,11 @@
 		})
 	}
 	
-	function convert($node) {
-		const text = $node.find("pre").html()
+	// Markdown記法のpre表記をChatworkのコードタグに変更
+	function convert(text) {
 		const array = text.split("\n")
 
-		let codeTags = ['<code>', '</code>']
+		let codeTags = ['[code]', '[/code]']
 		const code = array.map(line => {
 			console.log(line)
 			if(line.trim() === '```'){
