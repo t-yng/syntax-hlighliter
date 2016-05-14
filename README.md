@@ -5,6 +5,7 @@ This is a chrome extension for the Chatwork to syntax highlighting of source cod
 you can use markdown notation.
 
 **Description Example**  
+
     ```
     'use strict'
     
@@ -38,7 +39,7 @@ you can use markdown notation.
     ```
 
 **Diplay Example**
-```
+```javascript
 'use strict'
 
 init()
