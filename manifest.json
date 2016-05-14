@@ -1,11 +1,10 @@
 {
   "name": "syntax-highlighter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "manifest_version": 2,
   "description": "This is an extension for chat_work to highlight source code",
   "background":{
     "scripts": [
-			// "js/jquery-2.2.1.min.js",
 			"js/background.js"
 		]
   },
@@ -40,6 +39,14 @@
     // "16": "images/icon16.png",
     // "48": "images/icon48.png",
     // "128": "images/icon128.png"
-  }
+  },
+  "web_accessible_resources":[
+    "style/highlight/agate.min.css",
+    "style/highlight/default.min.css",
+    "style/highlight/github-gist.min.css",
+    "style/highlight/github.min.css",
+    "style/highlight/qtcreator_dark.min.css",
+    "style/highlight/solarized_dark.min.css"
+  ]
 
 }
