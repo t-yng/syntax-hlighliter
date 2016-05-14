@@ -15,18 +15,7 @@
 			}
 		})
 	})
-	
-	function changeMessageAreas() {
-		$("div.chatTimeLineMessage").each(function() {
-			let messageAreaNode = $(this).find("div.chatTimeLineMessageArea")
 
-			messageAreaNode.find("pre").find("code").each(function(i, block){
-				hljs.highlightBlock(block)
-			})
-			
-		})
-	}
-	
 	// Markdown記法のpre表記をChatworkのコードタグに変更
 	function convert(text) {
 		const array = text.split("\n")
@@ -44,7 +33,23 @@
 		
 		return code
 	}
-	
+		
+	function changeMessageAreas() {
+		$("div.chatTimeLineMessage").each(function() {
+			// メッセージ一覧が更新された時にハイライト表示が無効になってしまうため、常に監視しておく
+			// （更新された際に、codeタグのclass属性にchatCodeが存在しなくなる為）
+			let messageAreaNode = $(this).find("div.chatTimeLineMessageArea")
+			
+			// 背景色も適用するために削除
+			$('code').removeClass('chatCode')
+
+			messageAreaNode.find("pre").find("code").each(function(i, block){
+				hljs.highlightBlock(block)
+			})
+			
+		})
+	}
+		
 	// DOMの監視を開始する
 	function startMonitorDom(){
 		

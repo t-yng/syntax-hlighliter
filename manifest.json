@@ -6,7 +6,7 @@
   "background":{
     "scripts": [
 			// "js/jquery-2.2.1.min.js",
-			// "js/background.js"
+			"js/background.js"
 		]
   },
     "content_scripts": [
@@ -15,9 +15,9 @@
         "https://kcw.kddi.ne.jp/*",
 				"https://www.chatwork.com/*"
       ],
-      "css": [
-        "style/github.min.css"
-      ],
+      // "css": [
+      //   "style/github.min.css"
+      // ],
       "js": [
         "js/jquery-2.2.1.min.js",
         "js/highlight.min.js",
@@ -36,7 +36,8 @@
       // "48": "images/icon48.png",
       // "128": "images/icon128.png"
     },
-    "default_title": "syntax-highlighter"
+    "default_title": "syntax-highlighter",
+    "default_popup": "html/option.html"
   },
   "icons":{
     // "16": "images/icon16.png",
