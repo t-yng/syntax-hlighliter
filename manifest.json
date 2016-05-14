@@ -15,11 +15,8 @@
         "https://kcw.kddi.ne.jp/*",
 				"https://www.chatwork.com/*"
       ],
-      // "css": [
-      //   "style/github.min.css"
-      // ],
       "js": [
-        "js/jquery-2.2.1.min.js",
+        "js/jquery-2.2.3.min.js",
         "js/highlight.min.js",
         "js/content-script.js"
       ]

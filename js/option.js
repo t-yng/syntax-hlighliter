@@ -4,10 +4,11 @@ init()
 
 $(function(){
   $('#syntax_css').change(changeCSS)
+  $('#save_btn').click(save)
+  $('#cancell_btn').click(() => {close()})
 })
 
 $(function(){
-  $('#button').click(save)
 })
 
 function init(){

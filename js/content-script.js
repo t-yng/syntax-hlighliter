@@ -12,7 +12,7 @@
 			if(text.match(/```/)){
 				const code = convert(text)
 				$(this).val(code)
-			}
+			}			
 		})
 	})
 
@@ -33,7 +33,7 @@
 		
 		return code
 	}
-		
+			
 	function changeMessageAreas() {
 		$("div.chatTimeLineMessage").each(function() {
 			// メッセージ一覧が更新された時にハイライト表示が無効になってしまうため、常に監視しておく
