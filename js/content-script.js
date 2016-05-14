@@ -66,7 +66,20 @@
 	}
 		
 	window.onload = function() {
-		startMonitorDom()
+		chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
+			const css = response.css
+			insertCSS(css)
+			startMonitorDom()
+		})
+	}
+	
+	function insertCSS(css){
+    const link = document.createElement('link');
+		link.rel = 'stylesheet'
+		link.href = `chrome-extension://ahdnhhkenmojjpcmigjhlijhgkmcfemj/${css}`
+		link.id = 'syntax_css'
+
+    document.head.appendChild(link)
 	}
 
 })(this)
