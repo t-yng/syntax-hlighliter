@@ -15,8 +15,8 @@
 				"https://www.chatwork.com/*"
       ],
       "js": [
-        "js/jquery-2.2.3.min.js",
-        "js/highlight.min.js",
+        "bower_components/jquery/dist/jquery.min.js",
+        "lib/js/highlight.js/highlight.min.js",
         "js/content-script.js"
       ]
     }
@@ -41,12 +41,12 @@
     "128": "images/icon128.png"
   },
   "web_accessible_resources":[
-    "style/highlight/agate.min.css",
-    "style/highlight/default.min.css",
-    "style/highlight/github-gist.min.css",
-    "style/highlight/github.min.css",
-    "style/highlight/qtcreator_dark.min.css",
-    "style/highlight/solarized_dark.min.css"
+    "lib/js/highlight.js/styles/agate.min.css",
+    "lib/js/highlight.js/styles/default.min.css",
+    "lib/js/highlight.js/styles/github-gist.min.css",
+    "lib/js/highlight.js/styles/github.min.css",
+    "lib/js/highlight.js/styles/qtcreator_dark.min.css",
+    "lib/js/highlight.js/styles/solarized_dark.min.css"
   ]
 
 }
