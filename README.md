@@ -1,8 +1,15 @@
 # README
 This is a chrome extension for the Chatwork to syntax highlighting of source code.
 
-## markdown notation support
-you can use markdown notation.
+## Getting Stared
+You must install libraries with bower.  
+```
+bower install
+```
+
+## Markdown Notation Support
+You can use markdown notation.  
+This extension automatically converts ```` ```~``` ```` to `[code]~[/code]` in chat text.
 
 **Description Example**  
 
