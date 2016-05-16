@@ -76,7 +76,7 @@
 	function insertCSS(css){
     const link = document.createElement('link');
 		link.rel = 'stylesheet'
-		link.href = `chrome-extension://ahdnhhkenmojjpcmigjhlijhgkmcfemj/${css}`
+		link.href = chrome.extension.getURL(css)
 		link.id = 'syntax_css'
 
     document.head.appendChild(link)

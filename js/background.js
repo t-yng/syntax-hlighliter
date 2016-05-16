@@ -7,7 +7,7 @@
 	chrome.extension.onMessage.addListener((request, _, response) => {
 		// オプションの設定値を返す
 		if(request.method == "getSyntaxCSS") {
-			const css = localStorage.getItem('syntax_css')
+			const css = localStorage.getItem('syntax_css')? localStorage.getItem('syntax_css') : 'lib/js/highlight.js/styles/default.min.css'
 			const data = {css: css}
 			return response(data)
 		}
