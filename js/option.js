@@ -20,14 +20,12 @@ function init(){
 
 // 設定中のCSSを取得
 function getSettingSyntaxCSS() {
-  const css = localStorage.getItem('syntax_css')? localStorage.getItem('syntax_css') : 'style/highlight/default.min.css'
+  const css = localStorage.getItem('syntax_css')? localStorage.getItem('syntax_css') : 'lib/js/highlight.js/styles/default.min.css'
   return css
 }
 
 function changeCSS(css) {
-  
-  // const css = $('#syntax_css').val()
-  
+    
   const script = `
   document.head.removeChild(document.getElementById('syntax_css'))
   

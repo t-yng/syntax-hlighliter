@@ -66,6 +66,8 @@
 	}
 		
 	window.onload = function() {
+		// 状況によってコールバック関数が呼ばれない?
+		// 検証してみても、よく分からない...
 		chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
 			const css = response.css
 			insertCSS(css)
