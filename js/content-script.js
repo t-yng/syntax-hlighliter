@@ -68,17 +68,7 @@
 		var timelineMo = new MutationObserver(changeMessageAreas)
 		timelineMo.observe(timeline, options)
 	}
-	
-	$(document).ready(() => {
-		// 状況によってコールバック関数が呼ばれない?
-		// 検証してみても、よく分からない...
-		chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
-			const css = response.css
-			insertCSS(css)
-			startMonitorDom()
-		})		
-	})
-			
+				
 	function insertCSS(css){
     const link = document.createElement('link');
 		link.rel = 'stylesheet'
@@ -87,6 +77,13 @@
 
     document.head.appendChild(link)
 	}
+	
+	chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
+		const css = response.css
+		insertCSS(css)
+		startMonitorDom()
+	})		
+
 
 })(this)
 
