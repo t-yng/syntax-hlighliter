@@ -34,50 +34,51 @@
 		return code
 	}
 
-	function changeMessageAreas(records) {
+	function changeMessageAreas(records) {		
 		const nodeList = records
 			.map(record => Array.apply(null, record.addedNodes)) // NodeListをArrayに変換
 			.reduce((a,b) => a.concat(b))
-		
+
+		// TODO : リファクタリングする		
 		nodeList.forEach(node => {
-			if(node.localName !== 'code') return ;
-
-			// codeタグに対してハイライト処理をする
-			const $code = $(node)
-			$code.removeClass('chatCode')
-			$code.each(function(i, block){
-				hljs.highlightBlock(block)
-			})
-
-		})		
+			let $code = null
+			if(node.localName == 'code') {
+				$code = $(node)
+			}
+		 	else if($(node).find('code').length > 0){
+				// codeタグに対してハイライト処理をする
+				$code = $(node).find('code')
+			}
+			if($code != null) {
+				$code.removeClass('chatCode')
+				$code.each(function(i, block){
+					hljs.highlightBlock(block)
+				})
+			}
+		})
 	}
-		
+
 	// DOMの監視を開始する
 	function startMonitorDom(){
-		
 		// DOMの監視をするノードを取得
 		var timeline = document.getElementById("_timeLine")
-		console.log(timeline)
 		var options = {childList: true, subtree: true}
 
 		// メッセージ一覧のDOMの監視を開始
 		var timelineMo = new MutationObserver(changeMessageAreas)
 		timelineMo.observe(timeline, options)
-
-		// すでに更新されていることを想定して、メッセージを取得する
-		changeMessageAreas()
 	}
-		
-	window.onload = function() {
+	
+	$(document).ready(() => {
 		// 状況によってコールバック関数が呼ばれない?
 		// 検証してみても、よく分からない...
 		chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
 			const css = response.css
 			insertCSS(css)
 			startMonitorDom()
-		})
-	}
-	
+		})		
+	})
+			
 	function insertCSS(css){
     const link = document.createElement('link');
 		link.rel = 'stylesheet'
