@@ -1,6 +1,6 @@
 {
   "name": "syntax-highlighter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "description": "This is an extension for chat_work to highlight source code",
   "background":{
