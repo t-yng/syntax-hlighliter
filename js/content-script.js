@@ -6,31 +6,31 @@
   hljs.initHighlightingOnLoad();
 
   $(function(){
-    // メッセージ入力を監視
+    // 送信ボタンをクリックした時にテキストを変換
     $('#_chatText').change(function(){
       const text = $(this).val()
       $(this).val(convert(text))
     })
   })
-  
+
   $(function() {
+    // キー送信が実行された時にテキストを変換
     $('#_chatText').keydown(function(e) {
       // 「Enterキーでメッセージを送信」のチェックを確認
       // jQueryで取得される値は文字列
       const sendEnterActionChecked =( $('#_sendEnterAction').attr('aria-checked') === 'true' )
-      
+
       // 送信キーが押されたか判定
       const pressedSendKey = sendEnterActionChecked ? (e.keyCode === 13 && !event.shiftKey) : (event.shiftKey && e.keyCode === 13)
-      
+
       // 送信キーが押された場合はテキストに変換処理をかける
       if(pressedSendKey) {
         const text = $(this).val()
         $(this).val(convert(text))
-      }      
+      }
     })
   })
-  
-  
+
   const convert = function(text) {
     if (text.match(/```/)) {
       const code = conver2CodeTag(text)
@@ -51,25 +51,17 @@
         return `${codeTags.shift()}${p1}`
       })
     }).join("\n")
-    
+
     return code
   }
-  
+
   function changeMessageAreas(records) {
-    const nodeList = records
+    const nodeArray = records
       .map(record => Array.apply(null, record.addedNodes)) // NodeListをArrayに変換
       .reduce((a,b) => a.concat(b))
 
-    // TODO : リファクタリングする
-    nodeList.forEach(node => {
-      let $code = null
-      if(node.localName == 'code') {
-        $code = $(node)
-      }
-       else if($(node).find('code').length > 0){
-        // codeタグに対してハイライト処理をする
-        $code = $(node).find('code')
-      }
+    nodeArray.forEach(node => {
+      const  $code = $(node).find('code')
       if($code != null) {
         $code.removeClass('chatCode')
         $code.each(function(i, block){
