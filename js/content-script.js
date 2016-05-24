@@ -9,31 +9,52 @@
     // メッセージ入力を監視
     $('#_chatText').change(function(){
       const text = $(this).val()
-      if(text.match(/```/)){
-        const code = convert(text)
-        $(this).val(code)
-      }
+      $(this).val(convert(text))
     })
   })
+  
+  $(function() {
+    $('#_chatText').keydown(function(e) {
+      // 「Enterキーでメッセージを送信」のチェックを確認
+      // jQueryで取得される値は文字列
+      const sendEnterActionChecked =( $('#_sendEnterAction').attr('aria-checked') === 'true' )
+      
+      // 送信キーが押されたか判定
+      const pressedSendKey = sendEnterActionChecked ? (e.keyCode === 13 && !event.shiftKey) : (event.shiftKey && e.keyCode === 13)
+      
+      // 送信キーが押された場合はテキストに変換処理をかける
+      if(pressedSendKey) {
+        const text = $(this).val()
+        $(this).val(convert(text))
+      }      
+    })
+  })
+  
+  
+  const convert = function(text) {
+    if (text.match(/```/)) {
+      const code = conver2CodeTag(text)
+      return code
+    }
+    else {
+      return text
+    }
+  }
 
   // Markdown記法のpre表記をChatworkのコードタグに変更
-  function convert(text) {
+  const conver2CodeTag = function(text) {
     const array = text.split("\n")
 
     let codeTags = ['[code]', '[/code]']
     const code = array.map(line => {
-      console.log(line)
-      if(line.trim() === '```'){
-        return codeTags.shift()
-      }
-      else {
-        return line;
-      }
+      return line.replace(/^```*(.*$)/, function(_, p1){
+        return `${codeTags.shift()}${p1}`
+      })
     }).join("\n")
-
+    
     return code
   }
-
+  
   function changeMessageAreas(records) {
     const nodeList = records
       .map(record => Array.apply(null, record.addedNodes)) // NodeListをArrayに変換
@@ -70,8 +91,6 @@
   }
 
   $(document).ready(() => {
-    // 状況によってコールバック関数が呼ばれない?
-    // 検証してみても、よく分からない...
     chrome.extension.sendMessage({method:"getSyntaxCSS"}, (response)=>{
       const css = response.css
       insertCSS(css)
