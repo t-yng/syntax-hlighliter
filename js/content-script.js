@@ -67,13 +67,19 @@
         $code = $(node)
       }
        else if($(node).find('code').length > 0){
-        // codeタグに対してハイライト処理をする
         $code = $(node).find('code')
       }
-      if($code != null) {
+      if($code !== null) {
+        // codeタグに対してハイライト処理をする
+
         $code.removeClass('chatCode')
         $code.each(function(i, block){
           hljs.highlightBlock(block)
+
+          // ハイライト処理をすることでスクロール位置がずれるので、位置のズレを修正する
+          const pos = document.getElementById('_timeLine').scrollHeight
+          $('#_timeLine').scrollTop(pos)
+
         })
       }
     })
